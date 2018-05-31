@@ -14,25 +14,43 @@ namespace ConsoleApp1
 
         }
 
-        private static int GererMenu(List<string> menu)
+        private static int GererMenu(List<MenuItem> menu)
         {
-            foreach (string ligne in menu)
+            foreach (MenuItem ligne in menu)
             {
-                Console.WriteLine(ligne);
+                Console.WriteLine($"{ligne.Numero}-{ligne.Libelle}");
             }
+
+            Console.WriteLine("Saisir le numero de votre choix:");
             int choix;
             choix = int.Parse(Console.ReadLine());
-            return choix;
-        }
-    }
 
+            foreach (MenuItem item in menu)
+            {
+                if (choix == item.Numero)
+                {
+                    return choix;
+                }
+            }
+            Console.WriteLine("Erreur de saisie");
+            return -1;
+
+            //return menu.SingleOrDefault(x => x.Numero == choix) != null ? choix : -1;
+        }
+                
+    }
+    class MenuItem
+    {
+        public int Numero { get; set; }
+        public string Libelle { get; set; }
+    }
 }
 
-	
 
-	
-			
 
-			
-    
+
+
+
+
+
 
